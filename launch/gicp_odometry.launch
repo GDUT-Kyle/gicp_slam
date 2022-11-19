@@ -1,0 +1,13 @@
+<launch>
+    <node name="gicp_odometry" pkg="gicp_slam" type="gicp_odometry" output="screen">
+        <param name="bag_path" type="string" value="/media/kyle/Software/midCar/sichuan/2021-03-08-15-57-21/2021-03-08-15-57-21.bag" />
+        <param name="lidar_topic" type="string" value="/rslidar_points" />
+        <param name="path_rec_file" type="string" value="/home/kyle/exp_cvte/data_rec/path1.txt" />
+        <param name="time_rec_file" type="string" value="/home/kyle/exp_cvte/data_rec/time1.txt" />
+    </node>
+
+    <arg name="rviz" default="true" />
+    <group if="$(arg rviz)">
+        <node launch-prefix="nice" pkg="rviz" type="rviz" name="rviz" args="-d $(find gicp_slam)/rviz/rviz.rviz" />
+    </group>
+</launch>
